@@ -1,0 +1,197 @@
+/* ========== PAGE BACKGROUND LAYERS ========== */
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* 💗 Heart pattern background */
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #ffd6e8;
+  background-image: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'>\
+    <text x='50%' y='50%' font-size='28' text-anchor='middle' dominant-baseline='middle'>💖</text>\
+  </svg>");
+  background-repeat: repeat;
+  z-index: 0;
+}
+
+/* 🖼 Goofy portrait image */
+.container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('/Goofy.jpeg') no-repeat center center;
+  background-size: contain;
+  z-index: 1;
+}
+
+/* Make actual content appear above backgrounds */
+.container > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* ========== TITLE ========== */
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  line-height: 1.2;
+  max-width: 500px;
+}
+
+
+/* ========== BUTTON AREA ========== */
+
+.button-area {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+}
+
+/* YES button locked in center */
+.center-yes {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-120%, -50%);
+}
+
+/* YES button style */
+.yes-btn {
+  padding: 12px 28px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 30px;
+  background-color: #ff4d6d;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 77, 109, 0.4);
+}
+
+.yes-btn:hover {
+  transform: translate(-120%, -50%) scale(1.1);
+  background-color: #e63956;
+}
+
+/* NO button initial position */
+.no-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(20%, -50%);
+  padding: 12px 28px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 30px;
+  background-color: #6c757d;
+  color: white;
+  cursor: pointer;
+  transition: top 0.25s ease, left 0.25s ease;
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
+}
+
+/* When NO starts running */
+.no-btn.runaway {
+  transform: none;
+}
+
+
+/* ========== TRUE CENTERED FLOATING POPUP ========== */
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0);
+  z-index: 999999;
+
+  pointer-events: auto;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: white;
+  width: min(85vw, 340px);
+  max-height: 80vh;
+  padding: 18px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  overflow-y: auto;
+  animation: popIn 0.25s ease-out;
+}
+
+.popup-img {
+  width: 100%;
+  max-height: 50vh;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.popup-text {
+  font-size: 0.95rem;
+  color: #444;
+  margin: 0;
+}
+
+.close-btn {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 18px;
+  background: #ff4d6d;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* animation */
+@keyframes popIn {
+  from { transform: translate(-50%, -50%) scale(0.85); opacity: 0; }
+  to   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+
+/* ========== MOBILE RESPONSIVE ========== */
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 2.2rem;
+    padding: 0 10px;
+  }
+
+  .yes-btn, .no-btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}

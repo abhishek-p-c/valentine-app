@@ -1,0 +1,30 @@
+<div class="container">
+  <h1 class="title">
+    Hey Peds !! <br>
+    Will you be my valentine? 💖
+  </h1>
+
+
+  <div class="button-area" #playArea>
+    <button class="yes-btn center-yes" (click)="openPopup('yes')">Yes 💖</button>
+
+    <button
+      class="no-btn"
+      #noButton
+      [class.runaway]="isRunning"
+      (mouseenter)="moveButton()"
+      (click)="openPopup('no')"
+      [ngStyle]="isRunning ? { top: noBtnTop + 'px', left: noBtnLeft + 'px' } : {}"
+    >
+      No 🙈
+    </button>
+  </div>
+
+<!-- 💖 POPUP -->
+<div class="popup-overlay" *ngIf="showPopup">
+  <div class="popup">
+    <img [src]="popupImage" alt="Popup Image" class="popup-img" />
+    <p class="popup-text">{{ popupMessage }}</p>
+    <button class="close-btn" (click)="closePopup()">Close</button>
+  </div>
+</div>

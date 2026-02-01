@@ -33,7 +33,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url('Goofy.jpeg') no-repeat center center;
+  background: url('/valentine-app/Goofy.jpeg') no-repeat center center;
   background-size: contain;
   z-index: 1;
 }
